@@ -1,0 +1,35 @@
+version: "2"
+networks:
+  default:
+    external:
+      name: bridge_network
+services:
+  #Service for broker
+  rocketmq-broker0:
+    image: apacherocketmq/rocketmq:4.7.1-alpine
+    container_name: rocketmq-broker0
+    ports:
+      - 10909:10909
+      - 10911:10911
+      - 10912:10912
+      - 20911:20911
+    volumes:
+      - ./logs/broker0:/home/rocketmq/logs
+      - ./data/broker0:/home/rocketmq/store
+      - ./conf/dledger:/opt/rocketmq-4.7.1-alpine/conf/dledger
+    command: sh mqbroker -c /opt/rocketmq-4.7.1-alpine/conf/dledger/broker-n0.conf
+    restart: always
+  rocketmq-broker1:
+    image: apacherocketmq/rocketmq:4.7.1-alpine
+    container_name: rocketmq-broker1
+    ports:
+      - 10919:10919
+      - 10921:10921
+      - 10922:10922
+      - 20921:20921
+    volumes:
+      - ./logs/broker1:/home/rocketmq/logs
+      - ./data/broker1:/home/rocketmq/store
+      - ./conf/dledger:/opt/rocketmq-4.7.1-alpine/conf/dledger
+    command: sh mqbroker -c /opt/rocketmq-4.7.1-alpine/conf/dledger/broker-n1.conf
+    restart: always

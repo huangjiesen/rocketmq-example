@@ -1,0 +1,16 @@
+version: "2"
+networks:
+  default:
+    external:
+      name: bridge_network
+services:
+  rocketmq-console:
+    image: apacherocketmq/rocketmq-console:2.0.0
+    container_name: rocketmq-console
+    environment:
+      - "JAVA_OPTS=-Drocketmq.namesrv.addr=192.168.1.71:9876;192.168.1.76:9876;192.168.1.77:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    ports:
+      - 19876:8080
+    restart: always
+
+

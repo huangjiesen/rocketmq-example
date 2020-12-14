@@ -1,0 +1,17 @@
+version: "2"
+networks:
+  default:
+    external:
+      name: bridge_network
+services:
+  #Service for nameserver
+  rocketmq-namesrv:
+    image: apacherocketmq/rocketmq:4.7.1-alpine
+    container_name: rocketmq-namesrv
+    ports:
+      - 9876:9876
+    volumes:
+      - ./logs:/home/rocketmq/logs
+    command: sh mqnamesrv
+    restart: always
+
