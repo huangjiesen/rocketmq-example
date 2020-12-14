@@ -233,7 +233,7 @@ public class RocketMQTemplateController {
             localTrans.put(key, RocketMQLocalTransactionState.UNKNOWN);
             try {
                 // 执行本地事务，如：userService.save(data)，这个方法是同步执行的
-                // 模拟本地事务耗时5s Thread.sleep(5000);
+                // 模拟本地事务耗时5s 
                 Thread.sleep(5000);
 
                 if (new Random().nextInt() % 2 == 0) {
