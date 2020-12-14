@@ -44,6 +44,7 @@ cd /data/docker-services/rocketmq
 ### 3.1 创建nameserver工作目录
 ```
 mkdir -p /data/docker-services/rocketmq/namesrv/logs
+chmod a+rw /data/docker-services/rocketmq/namesrv/logs
 ```
 * 工作目录:/data/docker-services/rocketmq/namesrv
 * 日志目录:/data/docker-services/rocketmq/namesrv/logs
@@ -74,7 +75,7 @@ services:
 ```
 ### 3.3 启动nameserver服务
 ```
-docker-compsoe -f /data/docker-services/rocketmq/namesrv/docker-compose.yml up
+docker-compose -f /data/docker-services/rocketmq/namesrv/docker-compose.yml up
 ```
 
 ## 4. broker服务部署
@@ -253,9 +254,14 @@ sendMessageThreadPoolNums=2
 ### 4.4 启动broker服务
 启动broker服务前
 * 确保至少一个nameserver启动
-* 修改/broker-n0.conf,/broker-n1.conf配置文件的brokerIP1,brokerIP2为具体的IP,改为71、75或76
+* broker-n0.conf,broker-n1.conf配置文件修改
+  * brokerIP1,brokerIP2改为具体的IP
+    > 如改为192.168.1.76或192.168.1.77
+  * dLegerSelfId修改,根据dLegerPeers该为具体的DLedger Group节点名
+    > 如192.168.1.76改为`n1`,192.168.1.77改为`n2`
+
 ```
-docker-compsoe -f /data/docker-services/rocketmq/broker/docker-compose.yml up
+docker-compose -f /data/docker-services/rocketmq/broker/docker-compose.yml up
 ```
 
 ## 5. console服务部署
