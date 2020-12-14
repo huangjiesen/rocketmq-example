@@ -1,10 +1,10 @@
 # 部署方案
 * 版本: 4.7.1
 * 集群模式: RocketMQ-on-DLedger Group 三节点集群broker自动容灾切换
-    * RocketMQ-on-DLedger Group 是指一组相同名称的 Broker，至少需要 3 个节点，通过 Raft 自动选举出一个 Leader，其余节点 作为 Follower，并在 Leader 和 Follower 之间复制数据以保证高可用。
-    * RocketMQ-on-DLedger Group 能自动容灾切换，并保证数据一致。
-    * RocketMQ-on-DLedger Group 是可以水平扩展的，也即可以部署任意多个
-    * RocketMQ-on-DLedger Group 同时对外提供服务。
+  * RocketMQ-on-DLedger Group 是指一组相同名称的 Broker，至少需要 3 个节点，通过 Raft 自动选举出一个 Leader，其余节点 作为 Follower，并在 Leader 和 Follower 之间复制数据以保证高可用。
+  * RocketMQ-on-DLedger Group 能自动容灾切换，并保证数据一致。
+  * RocketMQ-on-DLedger Group 是可以水平扩展的，也即可以部署任意多个
+  * RocketMQ-on-DLedger Group 同时对外提供服务。
 
 其他集群部署模式介绍
 
@@ -250,7 +250,7 @@ sendMessageThreadPoolNums=2
 ######### DLedger 容灾切换相关配置 end  #########
 ```
 
-### 3.4 启动broker服务
+### 4.4 启动broker服务
 启动broker服务前
 * 确保至少一个nameserver启动
 * 修改/broker-n0.conf,/broker-n1.conf配置文件的brokerIP1,brokerIP2为具体的IP,改为71、75或76
@@ -258,12 +258,12 @@ sendMessageThreadPoolNums=2
 docker-compsoe -f /data/docker-services/rocketmq/broker/docker-compose.yml up
 ```
 
-## 4. console服务部署
-### 4.1 创建console工作目录
+## 5. console服务部署
+### 5.1 创建console工作目录
 ```
 mkdir /data/docker-services/rocketmq-console
 ```
-### 4.2 服务编排
+### 5.2 服务编排
 编写docker-compose.yml文件：
 ```
 vi /data/docker-services/rocketmq-console/docker-compose.yml
@@ -285,12 +285,12 @@ services:
       - 19876:8080
     restart: always
 ```
-### 4.3 启动服务
+### 5.3 启动服务
 ```
 docker-compose -f /data/docker-services/rocketmq-console/docker-compose.yml up 
 ```
 访问`http://192.168.1.71:19876`,进入RocketMQ控制台
 
 
-## 5. 自动容灾切换测试
+## 6. 自动容灾切换测试
 进入RocketMQ控制台，可查看Broker集群状态。将master节点示例停掉,大概10s自动完成master切换。
