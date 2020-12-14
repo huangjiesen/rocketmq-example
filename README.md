@@ -1,6 +1,6 @@
 # Apache RocketMQ 部署/开发指南
 * [官方开发者指南](https://github.com/apache/rocketmq/tree/master/docs/cn)
-* [官方开docker部署指南](https://github.com/apache/rocketmq-docker)
+* [官方docker部署指南](https://github.com/apache/rocketmq-docker)
 
 
 # 本示例部署笔记
