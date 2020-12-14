@@ -232,7 +232,8 @@ public class RocketMQTemplateController {
             String key = String.valueOf(message.getHeaders().get("transId"));
             localTrans.put(key, RocketMQLocalTransactionState.UNKNOWN);
             try {
-                // 做一下本事务，如：userService.save(data)，这个方法是同步执行的
+                // 执行本地事务，如：userService.save(data)，这个方法是同步执行的
+                // 模拟本地事务耗时5s Thread.sleep(5000);
                 Thread.sleep(5000);
 
                 if (new Random().nextInt() % 2 == 0) {
